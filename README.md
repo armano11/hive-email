@@ -212,6 +212,6 @@ email-response-evaluator/
 └── README.md
 ```
 
-## How AI Tools Were Used
+## How This Was Built
 
-This project was built with AI coding assistance. Key decisions — evaluation strategy, metric selection, RAG design, NLI approach, architecture — were made by the developer based on production engineering experience. AI was used as a productivity tool, not a design replacement.
+This project was entirely built by **AI (Claude, by Anthropic)**. AI was used to understand feasibility, design architecture, gather requirements, research competitor approaches via web data, implement all code, write tests, and produce documentation. The human provided direction and reviewed output.
