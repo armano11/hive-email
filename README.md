@@ -212,6 +212,6 @@ email-response-evaluator/
 └── README.md
 ```
 
-## How This Was Built
+## How AI Was Used
 
-This project was built with **AI (Claude, by Anthropic)** handling implementation, testing, documentation, and research. The human defined goals, provided direction, and made final decisions on architecture and scope.
+AI assisted with code implementation, testing, documentation, and web research. The human defined the problem, provided direction, and validated outputs.
