@@ -214,4 +214,4 @@ email-response-evaluator/
 
 ## How This Was Built
 
-This project was entirely built by **AI (Claude, by Anthropic)**. AI was used to understand feasibility, design architecture, gather requirements, research competitor approaches via web data, implement all code, write tests, and produce documentation. The human provided direction and reviewed output.
+This project was built with **AI (Claude, by Anthropic)** handling implementation, testing, documentation, and research. The human defined goals, provided direction, and made final decisions on architecture and scope.
