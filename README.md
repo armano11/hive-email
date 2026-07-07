@@ -214,4 +214,13 @@ email-response-evaluator/
 
 ## How AI Was Used
 
-AI assisted with code implementation, testing, documentation, and web research. The human defined the problem, provided direction, and validated outputs.
+AI assisted across the full development cycle:
+
+- **Research:** Web search and analysis of competitor approaches (Hiver, evaluation frameworks), NLI best practices, RAG patterns, and provider APIs
+- **Architecture:** Designed the 6-metric evaluation framework, RAG pipeline, provider abstraction, and NLI hallucination detection system
+- **Implementation:** Wrote all Python code — dataset generation, LLM providers (OpenAI/Anthropic/Gemini/NVIDIA), RAG retrieval, evaluation metrics, hallucination detection, reports, error analysis, and 35 tests
+- **Refinement:** Analyzed metric overlap to reduce 9 metrics to 6, fixed hallucination scoring (NEUTRAL doesn't penalize), adjusted heuristic fallback thresholds, resolved template bugs (`$$` double-dollar), removed problematic Unicode characters
+- **Validation:** Ran test suite after every change (35 tests passing), verified end-to-end pipeline, created judge calibration sanity check
+- **Documentation:** Wrote README, per-metric methodology guide (`METRICS_METHODOLOGY.md`), and inline code comments
+
+The human defined the problem, set requirements, reviewed outputs, and made final decisions on scope and quality.
