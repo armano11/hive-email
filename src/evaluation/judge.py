@@ -63,11 +63,8 @@ class PerEmailResult:
     intent_coverage: float | None = None
     action_completeness: float | None = None
     tone_alignment: float | None = None
-    helpfulness: float | None = None
     semantic_similarity: float | None = None
-    readability: float | None = None
     policy_compliance: float | None = None
-    safety: float | None = None
     hallucination_risk: str | None = None
     hallucination_score: float | None = None
     confidence_level: str | None = None
@@ -77,7 +74,6 @@ class PerEmailResult:
     human_review_reasons: list[str] = field(default_factory=list)
     failure_categories: list[str] = field(default_factory=list)
     metric_reasons: dict = field(default_factory=dict)
-    readability_details: dict | None = None
 
     def to_flat_dict(self) -> dict:
         return {
@@ -85,11 +81,8 @@ class PerEmailResult:
             "intent_coverage": self.intent_coverage,
             "action_completeness": self.action_completeness,
             "tone_alignment": self.tone_alignment,
-            "helpfulness": self.helpfulness,
             "semantic_similarity": self.semantic_similarity,
-            "readability": self.readability,
             "policy_compliance": self.policy_compliance,
-            "safety": self.safety,
             "hallucination_risk": self.hallucination_risk,
             "hallucination_score": self.hallucination_score,
             "confidence_level": self.confidence_level,
@@ -183,29 +176,12 @@ def evaluate_reply(
         result.action_completeness = 50.0
 
     try:
-        rd = evaluate_readability_deterministic(generated_reply, analysis)
-        result.readability = rd.score
-        result.readability_details = rd.details
-        result.metric_reasons["readability"] = {"reason": rd.reason, "method": rd.method}
-    except Exception as e:
-        logger.warning("Readability failed: %s", e)
-        result.readability = 50.0
-
-    try:
         pc = evaluate_policy_compliance_deterministic(generated_reply)
         result.policy_compliance = pc.score
         result.metric_reasons["policy_compliance"] = {"reason": pc.reason, "method": pc.method}
     except Exception as e:
         logger.warning("Policy compliance failed: %s", e)
         result.policy_compliance = 100.0
-
-    try:
-        sf = evaluate_safety_deterministic(generated_reply)
-        result.safety = sf.score
-        result.metric_reasons["safety"] = {"reason": sf.reason, "method": sf.method}
-    except Exception as e:
-        logger.warning("Safety evaluation failed: %s", e)
-        result.safety = 100.0
 
     # 4. Hallucination detection (NLI-based with LLM, heuristic fallback)
     try:
